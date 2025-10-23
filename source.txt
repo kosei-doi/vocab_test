@@ -1,0 +1,92 @@
+There will be 10 pieces of writing homework this semester. Writing and speaking are two modes of language output, so by writing, you can brush up your fundamental English production skills that also support your speaking. When you do this writing homework, you are expected to learn how to use AI effectively and ethically. This is part of Goal 3 of CS. You will not only write English on your own but also use AI to analyze and improve your English.
+
+ 
+
+This week’s task: Watch the video below and write one or more of the following:
+(Note: You do not need to watch the entire video)
+
+A brief summary of the content
+Your thoughts or impressions about the content
+Your thoughts or impressions about the scientist’s achievements, personality, English, communication skills, etc.
+
+
+再生
+
+ミュート
+残りの時間 -52:13
+1x
+再生レート
+
+ピクチャーインピクチャー
+
+フルスクリーン
+
+"2012 Nobel Lectures in Physiology or Medicine"
+Nobel Lecture "A Winding Road to Pluripotency" delivered by Shinya Yamanaka (Japanese Scientist 6 on page 7) who received a Nobel Prize in Physiology or Medicine in 2012
+Word count target: 100 words (You have to write more than this)
+
+“English Writing File”
+
+First, download the Word file called “English Writing File”. Write in this file and submit it by the deadline. This file already contains 10 sections, and you need to keep using the same file throughout the semester (do NOT download a new file each time you do writing homework). At the end of the semester, it is expected that all the 10 sections will be filled with your writing, because there are 10 pieces of writing homework.
+
+ 
+
+Each section consists of three parts: Part A, B, and C.
+
+Part A: Writing
+
+In Part A, you should write in English on your own. You will use AI assistance later (see Part B), but not at this stage. Feel free to use a dictionary (online, electronic, or paper), but do not use machine translation tools (e.g., DeepL or Google Translate) to translate everything from Japanese to English—doing so won’t help you develop your own English writing skills.
+
+ 
+
+However, it is OK to leave some Japanese words or phrases in your writing and ask AI to translate those parts later in Part B.
+
+ 
+
+In some cases, you may complete Part A in class (rather than at home). Even in those situations, you must copy and paste your writing here. Otherwise, your teacher won’t know whether you have completed Part A or what you wrote for it.
+
+ 
+
+Part B: AI Correction
+
+In Part B, you will check your English using AI. More specifically, you will use a custom-made GPT called “GramMaximize”, which corrects your English and provides feedback. You can access this GPT through a link provided on Moodle. To use it, you need a free ChatGPT account and the ChatGPT smartphone app.
+
+ 
+
+You can also use a tablet (such as an iPad) or a laptop with a rear-facing camera, as long as you install the ChatGPT app on the device.
+
+ 
+
+When using “GramMaximize” in the ChatGPT app, you can take a picture of your handwritten English using the internal camera. GramMaximize will then automatically recognize your writing and provide corrections and feedback. You don’t need to type everything or enter a prompt.
+
+ 
+
+If you left some Japanese words in your writing, GramMaximize will also suggest appropriate English translations. This may be more efficient than looking them up in a dictionary one by one.
+
+ 
+
+“Post-editing”
+
+AI-generated corrections may sometimes be unsatisfactory or contain expressions that you didn’t intend. The process of checking and adjusting AI output is called post-editing. Be sure to post-edit your AI-corrected English. AI is not always accurate, so you must be careful.
+
+ 
+
+If you need to revise the AI-corrected text further, please write the final version in the section labeled “Post-edited English (if any).”
+
+ 
+
+Part C: Analysis, Reflection, and Goals
+
+In Part C, analyze the mistakes you made in Part A (before AI correction) and reflect on the weaknesses of your English writing. For example, what types of mistakes did you make, and how many of each type? Based on your analysis, set goals for your next writing homework.
+
+ 
+
+From the second writing homework onward (i.e., Writing Homework 2 through 10), you should also reflect on whether you achieved the goals you set in the previous assignment.
+
+ 
+
+You may write your analysis, reflection, and goals in either Japanese or English. There is no word count requirement.
+
+ 
+
+By repeating the cycle of English writing → AI correction → analysis/reflection/goals, aim to steadily improve your English writing skills.
