@@ -17,7 +17,7 @@ A comprehensive English vocabulary learning game designed for university-level C
    git clone https://github.com/kosei-doi/vocab_test.git
    ```
 
-2. Open `vocabulary_quiz_game.html` in your web browser
+2. Open `index.html` in your web browser
 
 3. Select your preferred settings:
    - Number of questions
@@ -42,7 +42,7 @@ The game includes vocabulary from 14 weeks of study, focusing on:
 
 ```
 vocab_test/
-├── vocabulary_quiz_game.html    # Main game file
+├── index.html                   # Main game file
 ├── Week1_vocabulary.csv        # Week 1 vocabulary data
 ├── Week2_vocabulary.csv        # Week 2 vocabulary data
 ├── ...                        # Weeks 3-14 vocabulary data
