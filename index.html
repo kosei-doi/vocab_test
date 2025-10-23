@@ -2087,6 +2087,11 @@
                 optionElement.onclick = () => selectOption(index, newCorrectIndex);
                 optionElement.ontouchstart = (e) => {
                     e.preventDefault();
+                    const touch = e.touches[0];
+                    optionElement.touchStartPos = {
+                        x: touch.clientX,
+                        y: touch.clientY
+                    };
                     optionElement.style.transform = 'scale(0.95)';
                     optionElement.style.opacity = '0.8';
                 };
@@ -2095,13 +2100,33 @@
                     e.preventDefault();
                     optionElement.style.transform = 'scale(1)';
                     optionElement.style.opacity = '1';
-                    selectOption(index, newCorrectIndex);
+                    
+                    if (optionElement.touchStartPos) {
+                        const touch = e.changedTouches[0];
+                        const touchEndPos = {
+                            x: touch.clientX,
+                            y: touch.clientY
+                        };
+                        
+                        // タッチ位置の移動距離を計算
+                        const deltaX = Math.abs(touchEndPos.x - optionElement.touchStartPos.x);
+                        const deltaY = Math.abs(touchEndPos.y - optionElement.touchStartPos.y);
+                        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                        
+                        // 移動距離が20px以下の場合のみ実行
+                        if (distance <= 20) {
+                            selectOption(index, newCorrectIndex);
+                        }
+                    }
+                    
+                    optionElement.touchStartPos = null;
                 };
                 
                 optionElement.ontouchcancel = (e) => {
                     e.preventDefault();
                     optionElement.style.transform = 'scale(1)';
                     optionElement.style.opacity = '1';
+                    optionElement.touchStartPos = null;
                 };
                 optionsContainer.appendChild(optionElement);
             });
@@ -2225,8 +2250,15 @@
         function setupTouchEvents() {
             // Week選択ボタンのタッチイベント
             document.querySelectorAll('.week-button').forEach(button => {
+                let touchStartPos = null;
+                
                 button.addEventListener('touchstart', function(e) {
                     e.preventDefault();
+                    const touch = e.touches[0];
+                    touchStartPos = {
+                        x: touch.clientX,
+                        y: touch.clientY
+                    };
                     this.style.transform = 'scale(0.95)';
                     this.style.opacity = '0.8';
                 });
@@ -2235,22 +2267,48 @@
                     e.preventDefault();
                     this.style.transform = 'scale(1)';
                     this.style.opacity = '1';
-                    // 元のonclickイベントを実行
-                    const weekNumber = parseInt(this.querySelector('.week-number').textContent);
-                    toggleWeek(weekNumber, this);
+                    
+                    if (touchStartPos) {
+                        const touch = e.changedTouches[0];
+                        const touchEndPos = {
+                            x: touch.clientX,
+                            y: touch.clientY
+                        };
+                        
+                        // タッチ位置の移動距離を計算
+                        const deltaX = Math.abs(touchEndPos.x - touchStartPos.x);
+                        const deltaY = Math.abs(touchEndPos.y - touchStartPos.y);
+                        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                        
+                        // 移動距離が20px以下の場合のみ実行
+                        if (distance <= 20) {
+                            const weekNumber = parseInt(this.querySelector('.week-number').textContent);
+                            toggleWeek(weekNumber, this);
+                        }
+                    }
+                    
+                    touchStartPos = null;
                 });
                 
                 button.addEventListener('touchcancel', function(e) {
                     e.preventDefault();
                     this.style.transform = 'scale(1)';
                     this.style.opacity = '1';
+                    touchStartPos = null;
                 });
             });
             
             // 問題数選択ボタンのタッチイベント
             document.querySelectorAll('.count-button').forEach(button => {
+                let touchStartPos = null;
+                
                 button.addEventListener('touchstart', function(e) {
                     e.preventDefault();
+                    const touch = e.touches[0];
+                    touchStartPos = {
+                        x: touch.clientX,
+                        y: touch.clientY
+                    };
                     this.style.transform = 'scale(0.95)';
                     this.style.opacity = '0.8';
                 });
@@ -2259,23 +2317,49 @@
                     e.preventDefault();
                     this.style.transform = 'scale(1)';
                     this.style.opacity = '1';
-                    // 元のonclickイベントを実行
-                    const count = parseInt(this.textContent);
-                    setQuestionCount(count, this);
+                    
+                    if (touchStartPos) {
+                        const touch = e.changedTouches[0];
+                        const touchEndPos = {
+                            x: touch.clientX,
+                            y: touch.clientY
+                        };
+                        
+                        // タッチ位置の移動距離を計算
+                        const deltaX = Math.abs(touchEndPos.x - touchStartPos.x);
+                        const deltaY = Math.abs(touchEndPos.y - touchStartPos.y);
+                        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                        
+                        // 移動距離が20px以下の場合のみ実行
+                        if (distance <= 20) {
+                            const count = parseInt(this.textContent);
+                            setQuestionCount(count, this);
+                        }
+                    }
+                    
+                    touchStartPos = null;
                 });
                 
                 button.addEventListener('touchcancel', function(e) {
                     e.preventDefault();
                     this.style.transform = 'scale(1)';
                     this.style.opacity = '1';
+                    touchStartPos = null;
                 });
             });
             
             // 開始ボタンのタッチイベント
             const startButton = document.querySelector('.start-button');
             if (startButton) {
+                let touchStartPos = null;
+                
                 startButton.addEventListener('touchstart', function(e) {
                     e.preventDefault();
+                    const touch = e.touches[0];
+                    touchStartPos = {
+                        x: touch.clientX,
+                        y: touch.clientY
+                    };
                     this.style.transform = 'scale(0.95)';
                     this.style.opacity = '0.8';
                 });
@@ -2284,21 +2368,48 @@
                     e.preventDefault();
                     this.style.transform = 'scale(1)';
                     this.style.opacity = '1';
-                    startCustomQuiz();
+                    
+                    if (touchStartPos) {
+                        const touch = e.changedTouches[0];
+                        const touchEndPos = {
+                            x: touch.clientX,
+                            y: touch.clientY
+                        };
+                        
+                        // タッチ位置の移動距離を計算
+                        const deltaX = Math.abs(touchEndPos.x - touchStartPos.x);
+                        const deltaY = Math.abs(touchEndPos.y - touchStartPos.y);
+                        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                        
+                        // 移動距離が20px以下の場合のみ実行
+                        if (distance <= 20) {
+                            startCustomQuiz();
+                        }
+                    }
+                    
+                    touchStartPos = null;
                 });
                 
                 startButton.addEventListener('touchcancel', function(e) {
                     e.preventDefault();
                     this.style.transform = 'scale(1)';
                     this.style.opacity = '1';
+                    touchStartPos = null;
                 });
             }
             
             // 次へボタンのタッチイベント
             const nextButton = document.getElementById('next-button');
             if (nextButton) {
+                let touchStartPos = null;
+                
                 nextButton.addEventListener('touchstart', function(e) {
                     e.preventDefault();
+                    const touch = e.touches[0];
+                    touchStartPos = {
+                        x: touch.clientX,
+                        y: touch.clientY
+                    };
                     this.style.transform = 'scale(0.95)';
                     this.style.opacity = '0.8';
                 });
@@ -2307,20 +2418,47 @@
                     e.preventDefault();
                     this.style.transform = 'scale(1)';
                     this.style.opacity = '1';
-                    nextQuestion();
+                    
+                    if (touchStartPos) {
+                        const touch = e.changedTouches[0];
+                        const touchEndPos = {
+                            x: touch.clientX,
+                            y: touch.clientY
+                        };
+                        
+                        // タッチ位置の移動距離を計算
+                        const deltaX = Math.abs(touchEndPos.x - touchStartPos.x);
+                        const deltaY = Math.abs(touchEndPos.y - touchStartPos.y);
+                        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                        
+                        // 移動距離が20px以下の場合のみ実行
+                        if (distance <= 20) {
+                            nextQuestion();
+                        }
+                    }
+                    
+                    touchStartPos = null;
                 });
                 
                 nextButton.addEventListener('touchcancel', function(e) {
                     e.preventDefault();
                     this.style.transform = 'scale(1)';
                     this.style.opacity = '1';
+                    touchStartPos = null;
                 });
             }
             
             // メニューボタンのタッチイベント
             document.querySelectorAll('.menu-button').forEach(button => {
+                let touchStartPos = null;
+                
                 button.addEventListener('touchstart', function(e) {
                     e.preventDefault();
+                    const touch = e.touches[0];
+                    touchStartPos = {
+                        x: touch.clientX,
+                        y: touch.clientY
+                    };
                     this.style.transform = 'scale(0.95)';
                     this.style.opacity = '0.8';
                 });
@@ -2329,20 +2467,39 @@
                     e.preventDefault();
                     this.style.transform = 'scale(1)';
                     this.style.opacity = '1';
-                    // 元のonclickイベントを実行
-                    if (this.textContent.includes('メニュー')) {
-                        returnToMenu();
-                    } else if (this.textContent.includes('再挑戦')) {
-                        restartGame();
-                    } else if (this.textContent.includes('リセット')) {
-                        resetCorrectAnsweredQuestions();
+                    
+                    if (touchStartPos) {
+                        const touch = e.changedTouches[0];
+                        const touchEndPos = {
+                            x: touch.clientX,
+                            y: touch.clientY
+                        };
+                        
+                        // タッチ位置の移動距離を計算
+                        const deltaX = Math.abs(touchEndPos.x - touchStartPos.x);
+                        const deltaY = Math.abs(touchEndPos.y - touchStartPos.y);
+                        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                        
+                        // 移動距離が20px以下の場合のみ実行
+                        if (distance <= 20) {
+                            if (this.textContent.includes('メニュー')) {
+                                returnToMenu();
+                            } else if (this.textContent.includes('再挑戦')) {
+                                restartGame();
+                            } else if (this.textContent.includes('リセット')) {
+                                resetCorrectAnsweredQuestions();
+                            }
+                        }
                     }
+                    
+                    touchStartPos = null;
                 });
                 
                 button.addEventListener('touchcancel', function(e) {
                     e.preventDefault();
                     this.style.transform = 'scale(1)';
                     this.style.opacity = '1';
+                    touchStartPos = null;
                 });
             });
         }
