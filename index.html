@@ -2087,7 +2087,21 @@
                 optionElement.onclick = () => selectOption(index, newCorrectIndex);
                 optionElement.ontouchstart = (e) => {
                     e.preventDefault();
+                    optionElement.style.transform = 'scale(0.95)';
+                    optionElement.style.opacity = '0.8';
+                };
+                
+                optionElement.ontouchend = (e) => {
+                    e.preventDefault();
+                    optionElement.style.transform = 'scale(1)';
+                    optionElement.style.opacity = '1';
                     selectOption(index, newCorrectIndex);
+                };
+                
+                optionElement.ontouchcancel = (e) => {
+                    e.preventDefault();
+                    optionElement.style.transform = 'scale(1)';
+                    optionElement.style.opacity = '1';
                 };
                 optionsContainer.appendChild(optionElement);
             });
@@ -2207,6 +2221,132 @@
             startGame();
         }
 
+        // タッチイベントの設定関数
+        function setupTouchEvents() {
+            // Week選択ボタンのタッチイベント
+            document.querySelectorAll('.week-button').forEach(button => {
+                button.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(0.95)';
+                    this.style.opacity = '0.8';
+                });
+                
+                button.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                    this.style.opacity = '1';
+                    // 元のonclickイベントを実行
+                    const weekNumber = parseInt(this.querySelector('.week-number').textContent);
+                    toggleWeek(weekNumber, this);
+                });
+                
+                button.addEventListener('touchcancel', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                    this.style.opacity = '1';
+                });
+            });
+            
+            // 問題数選択ボタンのタッチイベント
+            document.querySelectorAll('.count-button').forEach(button => {
+                button.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(0.95)';
+                    this.style.opacity = '0.8';
+                });
+                
+                button.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                    this.style.opacity = '1';
+                    // 元のonclickイベントを実行
+                    const count = parseInt(this.textContent);
+                    setQuestionCount(count, this);
+                });
+                
+                button.addEventListener('touchcancel', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                    this.style.opacity = '1';
+                });
+            });
+            
+            // 開始ボタンのタッチイベント
+            const startButton = document.querySelector('.start-button');
+            if (startButton) {
+                startButton.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(0.95)';
+                    this.style.opacity = '0.8';
+                });
+                
+                startButton.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                    this.style.opacity = '1';
+                    startCustomQuiz();
+                });
+                
+                startButton.addEventListener('touchcancel', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                    this.style.opacity = '1';
+                });
+            }
+            
+            // 次へボタンのタッチイベント
+            const nextButton = document.getElementById('next-button');
+            if (nextButton) {
+                nextButton.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(0.95)';
+                    this.style.opacity = '0.8';
+                });
+                
+                nextButton.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                    this.style.opacity = '1';
+                    nextQuestion();
+                });
+                
+                nextButton.addEventListener('touchcancel', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                    this.style.opacity = '1';
+                });
+            }
+            
+            // メニューボタンのタッチイベント
+            document.querySelectorAll('.menu-button').forEach(button => {
+                button.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(0.95)';
+                    this.style.opacity = '0.8';
+                });
+                
+                button.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                    this.style.opacity = '1';
+                    // 元のonclickイベントを実行
+                    if (this.textContent.includes('メニュー')) {
+                        returnToMenu();
+                    } else if (this.textContent.includes('再挑戦')) {
+                        restartGame();
+                    } else if (this.textContent.includes('リセット')) {
+                        resetCorrectAnsweredQuestions();
+                    }
+                });
+                
+                button.addEventListener('touchcancel', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                    this.style.opacity = '1';
+                });
+            });
+        }
+
         // 初期化 - メニュー画面を表示
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('menu-screen').style.display = 'block';
@@ -2221,6 +2361,9 @@
             
             // ローカルストレージから正解済み問題を読み込み
             loadCorrectAnsweredQuestions();
+            
+            // タッチイベントの設定
+            setupTouchEvents();
         });
     </script>
 </body>
