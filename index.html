@@ -15,9 +15,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f5f6fa;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 5px;
             margin: 0;
             overflow-x: hidden;
@@ -31,11 +28,11 @@
             max-width: 900px;
             width: 100%;
             min-height: 95vh;
-            max-height: 95vh;
+            margin: 0 auto;
             text-align: center;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow-y: auto;
         }
 
         .header {
@@ -257,6 +254,14 @@
         .menu-content {
             text-align: center;
             padding: 20px 0;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        #game-content {
+            overflow-y: auto;
+            flex: 1;
+            padding: 10px 0;
         }
 
         .menu-title {
@@ -451,12 +456,31 @@
             flex-shrink: 0;
         }
 
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #74b9ff, #00b894);
-            transition: width 0.5s ease;
-            border-radius: 5px;
-            box-shadow: 0 1px 4px rgba(116, 185, 255, 0.3);
+        /* スクロールバーのスタイリング */
+        .game-container::-webkit-scrollbar,
+        .menu-content::-webkit-scrollbar,
+        #game-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .game-container::-webkit-scrollbar-track,
+        .menu-content::-webkit-scrollbar-track,
+        #game-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .game-container::-webkit-scrollbar-thumb,
+        .menu-content::-webkit-scrollbar-thumb,
+        #game-content::-webkit-scrollbar-thumb {
+            background: #74b9ff;
+            border-radius: 3px;
+        }
+
+        .game-container::-webkit-scrollbar-thumb:hover,
+        .menu-content::-webkit-scrollbar-thumb:hover,
+        #game-content::-webkit-scrollbar-thumb:hover {
+            background: #0984e3;
         }
 
         @media (max-width: 768px) {
@@ -468,7 +492,6 @@
                 padding: 10px;
                 border-radius: 10px;
                 min-height: 98vh;
-                max-height: 98vh;
             }
             
             .title {
